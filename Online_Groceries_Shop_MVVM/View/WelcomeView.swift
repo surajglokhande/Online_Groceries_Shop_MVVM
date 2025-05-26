@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    
+    @ObservedObject var coordinator: AppCoordinator
+    
     var body: some View {
         ZStack {
             Image("welcome_bg")
@@ -30,7 +33,7 @@ struct WelcomeView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 20)
                     NavigationLink {
-                        SignInView()
+                        coordinator.build(.SignUp)
                     } label: {
                         Text("Get Started")
                             .foregroundStyle(.white)

@@ -10,12 +10,17 @@ import SwiftData
 
 @main
 struct Online_Groceries_Shop_MVVMApp: App {
+    
+    @StateObject private var appCoordinator: AppCoordinator
+    
+    init() {
+        let container = DependencyContainer()
+        _appCoordinator = StateObject(wrappedValue: container.makeAppCoordinator())
+    }
+    
     var body: some Scene {
         WindowGroup {
-             NavigationView {
-                 //WelcomeView()
-                 LoginView()
-             }
+             CoordinatorView(appCoordinator: appCoordinator)
         }
     }
 }

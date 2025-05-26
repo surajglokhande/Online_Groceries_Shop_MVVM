@@ -15,6 +15,7 @@ struct SignInView: View {
     @State private var mobileNumber = ""
     @FocusState private var isFirstResponder :Bool
 
+    @ObservedObject var viewModel: SignUpViewModel
     
     var body: some View {
         VStack {
