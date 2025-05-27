@@ -24,38 +24,41 @@ struct WelcomeView: View {
                         .frame(width: 60, height: 60)
                         .padding(.bottom, 8)
                     Text("Welcome\nto our store")
-                        .font(.custom(Constants.Fonts.semiBold.rawValue, fixedSize: 48))
+                        .font(.customFont(.semibold, size: 48))
                         .foregroundStyle(.white)
                         .multilineTextAlignment(.center)
                     Text("Get your groceries in as fast as one hour")
-                        .font(.custom(Constants.Fonts.medium.rawValue, fixedSize: 16))
+                        .font(.customFont(.medium, size: 16))
                         .foregroundStyle(.white.opacity(0.7))
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 20)
-                    NavigationLink {
-                        coordinator.build(.SignUp)
-                    } label: {
-                        Text("Get Started")
-                            .foregroundStyle(.white)
-                            .font(.custom(Constants.Fonts.semiBold.rawValue, fixedSize: 18))
-                            .multilineTextAlignment(.center)
+//                    NavigationLink {
+//                        coordinator.build(.SignUp)
+//                    } label: {
+//                        Text("Get Started")
+//                            .foregroundStyle(.white)
+//                            .font(.customFont(.semibold, size: 18))
+//                            .multilineTextAlignment(.center)
+//                    }
+//                    .frame(maxWidth: .infinity, minHeight: 60 ,maxHeight: 60)
+//                    .background(.green)
+//                    .cornerRadius(20)
+                    RoundButton(title: "Get Started", bgColor: Color.primaryApp, titleColor: .white) {
+                        coordinator.build(.Login)
                     }
-                    .frame(maxWidth: .infinity, minHeight: 50 ,maxHeight: 50)
-                    .background(.green)
-                    .cornerRadius(10)
-                    
+                    Spacer()
+                        .frame(height: 45)
                 }
-                Spacer()
-                    .frame(height: 50)
+                
             }.padding(.horizontal ,20)
             
         }
-        .navigationBarHidden(true)
-        .navigationTitle("")
-        .navigationBarBackButtonHidden(true)
+        //        .navigationBarHidden(true)
+        //        .navigationTitle("")
+        //        .navigationBarBackButtonHidden(true)
     }
 }
 
 #Preview {
-    WelcomeView()
+    WelcomeView(coordinator: AppCoordinator(viewFactory: ViewFactory(container: DependencyContainer())))
 }

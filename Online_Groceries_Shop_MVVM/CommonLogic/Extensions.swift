@@ -8,6 +8,31 @@
 import SwiftUI
 
 extension Color {
+    
+    static var primaryApp: Color {
+        return Color(hex: "53B175")
+    }
+    
+    static var primaryText: Color {
+        return Color(hex: "030303")
+    }
+    
+    static var secondaryText: Color {
+        return Color(hex: "828282")
+    }
+    
+    static var textTitle: Color {
+        return Color(hex: "7C7C7C")
+    }
+    
+    static var placeholder: Color {
+        return Color(hex: "B1B1B1")
+    }
+    
+    static var darkGray: Color {
+        return Color(hex: "4C4F4D")
+    }
+    
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
@@ -31,5 +56,11 @@ extension Color {
             blue:  Double(b) / 255,
             opacity: Double(a) / 255
         )
+    }
+}
+
+extension Font {
+    static func customFont(_ type: Constants.Fonts, size: CGFloat) -> Font? {
+        custom(type.rawValue, size: size)
     }
 }

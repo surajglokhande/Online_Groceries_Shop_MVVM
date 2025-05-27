@@ -21,12 +21,15 @@ struct FloatingPlaceholderTextField: View {
             Group {
                 if secure {
                     SecureField("", text: $text)
+                        .padding(15)
                         .focused($isEditing)
                 }else{
                     TextField("", text: $text)
+                        .padding(15)
                         .focused($isEditing)
                 }
             }
+            .zIndex(isEditing ? 0 : 1)
             .frame(height: 40)
             .padding(10)
             .background(
@@ -40,6 +43,7 @@ struct FloatingPlaceholderTextField: View {
                 .offset(x: 8, y: isEditing || !text.isEmpty ? -40 : 0)
                 .scaleEffect(isEditing || !text.isEmpty ? 0.8 : 1.0, anchor: .leading)
                 .animation(.easeInOut(duration: 0.2), value: isEditing || !text.isEmpty)
+                .zIndex(isEditing ? 1 : 0)
         }
     }
 }

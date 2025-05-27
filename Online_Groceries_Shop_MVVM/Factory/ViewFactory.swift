@@ -17,12 +17,14 @@ struct ViewFactory {
     @ViewBuilder
     func makeView(for screen: Screen, coordinator: AppCoordinator) -> some View {
         switch screen {
-        case .SignUp:
-            SignInView(viewModel: container.makeSignUpViewModel())
-//        case .Login:
-//            LoginView(viewModel: container.makeLoginViewModel(coordinator: coordinator))
         case .Welcome:
             WelcomeView(coordinator: coordinator)
+        case .SignIn:
+            SignInView(viewModel: container.makeSignInViewModel(), coordinator: coordinator)
+        case .Login:
+            LoginView(coordinator: coordinator, viewModel: container.makeLoginViewModel())
+        case .SignUp:
+            SignUpView(viewModel: container.makeSignUpViewModel())
         }
     }
 }

@@ -23,7 +23,8 @@ protocol AppCoordinatorProtocol: ObservableObject {
 
 enum Screen: Identifiable, Hashable {
     case Welcome
-//    case Login
+    case Login
+    case SignIn
     case SignUp
 //    case detailHabit(named: Habit)
     

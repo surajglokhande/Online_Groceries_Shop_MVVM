@@ -1,95 +1,131 @@
 //
-//  LoginView.swift
+//  SignInView.swift
 //  Online_Groceries_Shop_MVVM
 //
-//  Created by Suraj Lokhande2 on 24/03/25.
+//  Created by Suraj Lokhande2 on 20/03/25.
 //
+
 import SwiftUI
+import CountryPicker
 
 struct LoginView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var showPassword: Bool = false
     
-    @ObservedObject private var viewModel: LoginViewModel
-
+    @State private var country: Country?
+    @State private var showCountryPicker = false
+    @State private var mobileNumber = ""
+    @FocusState private var isFirstResponder :Bool
+    @State private var alert: Bool = false
+    
+    @ObservedObject var coordinator: AppCoordinator
+    @ObservedObject var viewModel: LoginViewModel
+    
     var body: some View {
         VStack {
-            Image("color_logo")
+            Image("sign_in_top")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 60, height: 60, alignment: .center)
-                .padding(.bottom, 20)
-
-            VStack(alignment: .leading) {
-                Text("Loging")
-                    .font(.custom(Constants.Fonts.medium.rawValue, size: 40))
-                    .padding(.bottom, 5)
-
-                Text("Enter your emails and password")
-                    .font(.custom(Constants.Fonts.medium.rawValue, size: 20))
-                    .foregroundColor(.gray)
-                    .padding(.bottom, 20)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-
-            VStack(alignment: .leading, spacing: 20) {
-                FloatingPlaceholderTextField(text: $email, placeholder: " Email ")
+                .overlay(alignment: .bottomLeading) {
+                    Text("Get your Groceries\nwith nectar")
+                        .font(.customFont(.semibold, size: 26))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 35, trailing: 0))
+                }
+            
+            VStack(alignment: .leading, spacing: 30) {
                 
-                Group {
-                    if showPassword {
-                        FloatingPlaceholderTextField(text: $password, placeholder: " Password ")
-                    } else {
-                        FloatingPlaceholderTextField(text: $password, placeholder: " Password ", secure: true)
+                VStack(spacing: 15) {
+//                    HStack(alignment: .center) {
+//                        Button {
+//                            showCountryPicker = true
+//                        } label: {
+//                            if let obj = $country.wrappedValue {
+//                                Text("\(obj.isoCode.getFlag())")
+//                                    .font(.custom(Constants.Fonts.medium.rawValue, fixedSize: 30))
+//
+//                                Text("+\(obj.phoneCode)")
+//                                    .font(.custom(Constants.Fonts.medium.rawValue, fixedSize: 18))
+//                            }
+//                        }
+//                        .foregroundStyle(.black)
+//
+//                        TextField("Enter your mobile number", text: $mobileNumber)
+//                            .font(.custom(Constants.Fonts.medium.rawValue, fixedSize: 18))
+//                            .keyboardType(.phonePad)
+//                            .focused($isFirstResponder)
+//                            .toolbar {
+//                                ToolbarItem(placement: .keyboard) {
+//                                    HStack {
+//                                        Spacer()
+//                                        Button("Done") {
+//                                            isFirstResponder = false
+//                                        }
+//                                        .frame(alignment: .trailing)
+//                                        .font(.custom(Constants.Fonts.medium.rawValue, fixedSize: 18))
+//                                    }
+//                                }
+//                            }
+//                    }
+//                    Divider().padding(.top, 5)
+                     
+                    RoundButton(title: "Continue with Email Sign In", icon: nil, bgColor: Color.init(hex: "5383EC"), titleColor: .white) {
+                        coordinator.build(.SignIn)
+                    }
+                    RoundButton(title: "Continue with Email Sign Up", icon: nil, bgColor: Color.primaryApp, titleColor: .white) {
+                        coordinator.build(.SignUp)
                     }
                 }
-                .overlay(alignment: .trailing) {
-                    Button(action: {
-                        showPassword.toggle()
-                    }) {
-                        Image(systemName: showPassword ? "eye.slash" : "eye")
-                            .foregroundColor(.black)
-                            .padding(15)
+                
+                Text("Or continue with social media")
+                    .font(.customFont(.semibold, size: 14))
+                    .foregroundStyle(Color.textTitle)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                
+                VStack(spacing: 15) {
+                    Button {
+                        alert.toggle()
+                    } label: {
+                        RoundButton(title: "Continue with Google", icon: Image("google_logo"), bgColor: .init(hex: "db4437"), titleColor: .white, content:  {
+                            //AnyView(_fromValue: EmptyView())
+                        })
+                        .disabled(true)
                     }
+                    Button {
+                        alert.toggle()
+                    } label: {
+                        RoundButton(title: "Continue with Facebook", icon: Image("fb_logo"), bgColor: .init(hex: "4A66AC"), titleColor: .white, content:  {
+                            //AnyView(_fromValue: EmptyView())
+                        })
+                        .disabled(true)
+                    }
+
                 }
-            }
-
-            Button(action: {
-                // Handle forget password action
-            }) {
-                Text("Forget password?")
-                    .foregroundColor(.black)
-            }
-            .frame(maxWidth: .infinity, alignment: .trailing)
-            .padding(.bottom, 20)
-
-            Button(action: {
-                // Handle login action
-            }) {
-                Text("Log In")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.green)
-                    .cornerRadius(15.0)
-            }
-            .padding(.bottom, 20)
-
-            HStack {
-                Text("Don't have an account?")
-                Button(action: {
-                    // Handle sign up action
-                }) {
-                    Text("Sign Up")
-                        .foregroundColor(.green)
-                }
-            }
+                
+            }.padding(.horizontal, 20)
+            Spacer()
         }
-        .padding()
+        .onAppear(perform: {
+            country = Country(phoneCode: "91", isoCode: "IN")
+        })
+        .sheet(isPresented: $showCountryPicker, onDismiss: {
+            mobileNumber = ""
+            isFirstResponder = false
+        }, content: {
+            CountryPicker(country: $country)
+        })
+        .alert("Comming Soon", isPresented: $alert) {
+            Button("OK", role: .cancel) {
+                alert.toggle()
+            }
+        } message: {
+            Text("This feature is not available yet.")
+        }
+        .navigationBarHidden(true)
+        .navigationTitle("")
+        .navigationBarBackButtonHidden(true)
+        .ignoresSafeArea()
     }
 }
 
 #Preview {
-    LoginView()
+    LoginView(coordinator: AppCoordinator(viewFactory: ViewFactory(container: DependencyContainer())), viewModel: LoginViewModel())
 }

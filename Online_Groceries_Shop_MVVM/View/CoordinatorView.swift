@@ -17,12 +17,12 @@ struct CoordinatorView: View {
                 .navigationDestination(for: Screen.self) { screen in
                     appCoordinator.build(screen)
                 }
-//                .sheet(item: $appCoordinator.sheet) { sheet in
-//                    appCoordinator.build(sheet)
-//                }
-//                .fullScreenCover(item: $appCoordinator.fullScreenCover) { fullScreenCover in
-//                    appCoordinator.build(fullScreenCover)
-//                }
+                .sheet(item: $appCoordinator.sheet) { sheet in
+                    appCoordinator.build(sheet)
+                }
+                .fullScreenCover(item: $appCoordinator.fullScreenCover) { fullScreenCover in
+                    appCoordinator.build(fullScreenCover)
+                }
         }
     }
 }

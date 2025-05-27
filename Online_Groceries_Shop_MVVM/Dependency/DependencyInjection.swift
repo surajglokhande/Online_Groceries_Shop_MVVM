@@ -10,9 +10,9 @@ import SwiftUI
 
 class DependencyContainer {
     // Data Sources
-    lazy var dataSource: ProductDataSource = {
-        return MockProductDataSource()
-    }()
+//    lazy var dataSource: DataSource = {
+//        return MockProductDataSource()
+//    }()
     
 //    // Repositories
 //    lazy var productRepository: ProductRepository = {
@@ -37,10 +37,12 @@ class DependencyContainer {
     func makeSignUpViewModel() -> SignUpViewModel {
         return SignUpViewModel()
     }
+    func makeSignInViewModel() -> SignInViewModel {
+        return SignInViewModel()
+    }
     func makeLoginViewModel() -> LoginViewModel {
         return LoginViewModel()
     }
-    
     func makeHomeViewModel() -> HomeViewModel {
         return HomeViewModel()
     }

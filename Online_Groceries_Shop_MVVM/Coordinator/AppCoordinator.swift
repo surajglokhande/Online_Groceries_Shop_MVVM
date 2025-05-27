@@ -51,11 +51,7 @@ class AppCoordinator: AppCoordinatorProtocol {
     @ViewBuilder
     func build(_ screen: Screen) -> some View {
         switch screen {
-        case .Welcome:
-            viewFactory.makeView(for: screen, coordinator: self)
-//        case .Login:
-//            LoginView()
-        case .SignUp:
+        case .Welcome, .SignUp, .SignIn, .Login:
             viewFactory.makeView(for: screen, coordinator: self)
 //        case .detailHabit(named: let habit):
 //            //DetailHabitView(habit: habit)

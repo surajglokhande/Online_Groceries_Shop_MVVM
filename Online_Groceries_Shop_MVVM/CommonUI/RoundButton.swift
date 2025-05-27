@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-struct RoundButton: View {
+struct RoundButton<Content: View>: View {
     
     @State var title: String = ""
     @State var icon: Image? = nil
     @State var bgColor: Color = .white
     @State var titleColor: Color = .white
     
-    var didTap: (() -> ())?
+    @ViewBuilder var content: () -> Content
+    var tap: (()->())?
     
     var body: some View {
-        Button {
-            didTap?()
+        NavigationLink {
+            content()
         } label: {
             HStack(spacing: 15) {
                 
@@ -28,20 +29,29 @@ struct RoundButton: View {
                         .scaledToFit()
                         .frame(height: 25)
                 }
-                    
+                
                 Text(title)
                     .foregroundStyle(titleColor)
-                    .font(.custom(Constants.Fonts.semiBold.rawValue, fixedSize: 18))
+                    .font(.customFont(.semibold, size: 18))
                     .multilineTextAlignment(.center)
-                    
-            }.frame(maxWidth: .infinity, minHeight: 50 ,maxHeight: 50)
+                
+            }
+            .frame(maxWidth: .infinity, minHeight: 60 ,maxHeight: 60)
             
         }
         .background(bgColor)
-        .cornerRadius(10)
+        .cornerRadius(20)
+        .onTapGesture {
+            tap?()
+        }
     }
 }
 
 #Preview {
-    RoundButton(title: "Get Started", bgColor: .blue, titleColor: .white).padding(20)
+    RoundButton(title: "Click Me", bgColor: Color.primaryApp, titleColor: .white) {
+        Text("Button Clicked")
+    } tap: {
+        print("Button tapped")
+    }
+    .padding(20)
 }

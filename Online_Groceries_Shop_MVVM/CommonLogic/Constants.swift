@@ -8,9 +8,9 @@
 
 enum Constants {
     enum Fonts: String {
-        case regular = "Gilory-Regular"
-        case medium = "Gilory-Medium"
-        case bold = "Gilory-Bold"
-        case semiBold = "Gilory-SemiBold"
+        case regular = "Gilroy-Regular"
+        case medium = "Gilroy-Medium"
+        case semibold = "Gilroy-SemiBold"
+        case bold = "Gilroy-Bold"
     }
 }
