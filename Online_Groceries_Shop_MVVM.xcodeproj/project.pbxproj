@@ -37,6 +37,7 @@
 		4BD4267B2D8D6098002041F3 /* CountryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD4267A2D8D6092002041F3 /* CountryPicker.swift */; };
 		4BECEA602D911680008739BF /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BECEA5F2D911680008739BF /* SignInView.swift */; };
 		4BED0A7C2D8C307A00C90ABC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED0A7B2D8C307A00C90ABC /* LoginView.swift */; };
+		94E1F14C2DE723B40095324E /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E1F14B2DE723B40095324E /* Test.swift */; };
 		B67A4C0F2DE4794000A384A5 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67A4C0C2DE4794000A384A5 /* AppCoordinator.swift */; };
 		B67A4C102DE4794000A384A5 /* AppCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67A4C0D2DE4794000A384A5 /* AppCoordinatorProtocol.swift */; };
 		B67A4C142DE47A3300A384A5 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67A4C132DE47A3300A384A5 /* Task.swift */; };
@@ -103,6 +104,7 @@
 		4BD4267A2D8D6092002041F3 /* CountryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPicker.swift; sourceTree = "<group>"; };
 		4BECEA5F2D911680008739BF /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		4BED0A7B2D8C307A00C90ABC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		94E1F14B2DE723B40095324E /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		B67A4C0C2DE4794000A384A5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		B67A4C0D2DE4794000A384A5 /* AppCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		B67A4C132DE47A3300A384A5 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				4BED0A7B2D8C307A00C90ABC /* LoginView.swift */,
 				4BECEA5F2D911680008739BF /* SignInView.swift */,
 				B6B47FAF2DE5CDD700F95AFD /* SignUpView.swift */,
+				94E1F14B2DE723B40095324E /* Test.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				B67A4C622DE491F900A384A5 /* LoginViewModel.swift in Sources */,
 				4B48F7E12D92AFE600C92DBB /* HTTPMethod.swift in Sources */,
 				4B48F7E42D92AFE600C92DBB /* NetworkManager.swift in Sources */,
+				94E1F14C2DE723B40095324E /* Test.swift in Sources */,
 				B67A4C1B2DE47E2600A384A5 /* ViewFactory.swift in Sources */,
 				4B48F7E92D92AFE600C92DBB /* MultipartParameterEncoding.swift in Sources */,
 				4B48F7EA2D92AFE600C92DBB /* JSONParameterEncoder.swift in Sources */,

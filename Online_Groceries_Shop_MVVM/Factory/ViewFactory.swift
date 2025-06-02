@@ -20,11 +20,11 @@ struct ViewFactory {
         case .Welcome:
             WelcomeView(coordinator: coordinator)
         case .SignIn:
-            SignInView(viewModel: container.makeSignInViewModel(), coordinator: coordinator)
+            SignInView(coordinator: coordinator, viewModel: container.makeSignInViewModel())
         case .Login:
             LoginView(coordinator: coordinator, viewModel: container.makeLoginViewModel())
         case .SignUp:
-            SignUpView(viewModel: container.makeSignUpViewModel())
+            SignUpView(coordinator: coordinator, viewModel: container.makeSignUpViewModel())
         }
     }
 }
