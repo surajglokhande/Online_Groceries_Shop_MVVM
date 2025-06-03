@@ -68,7 +68,9 @@ struct SignInView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.vertical, 10)
                 
-                RoundButton(title: "Log In", bgColor: Color.green ,content: {
+                RoundButton(title: "Log In",
+                            bgColor: Color.primaryApp ,
+                            content: {
                     //call login service
                 })
                 .padding(.bottom, 20)
