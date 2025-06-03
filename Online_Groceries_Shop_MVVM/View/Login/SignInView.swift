@@ -68,10 +68,8 @@ struct SignInView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.vertical, 10)
                 
-                RoundButton(title: "Log In",
-                            bgColor: Color.primaryApp ,
-                            content: {
-                    //call login service
+                RoundButton(title: "Log In", bgColor: Color.primaryApp, tap: {
+                    //call login API
                 })
                 .padding(.bottom, 20)
                 
@@ -80,8 +78,8 @@ struct SignInView: View {
                         .font(.customFont(.semibold, size: 14))
                         .foregroundColor(.primaryText)
                     
-                    NavigationLink {
-                        coordinator.build(.SignUp)
+                    Button {
+                        coordinator.popTo(.SignUp)
                     } label: {
                         Text("Sign Up")
                             .font(.customFont(.semibold, size: 14))

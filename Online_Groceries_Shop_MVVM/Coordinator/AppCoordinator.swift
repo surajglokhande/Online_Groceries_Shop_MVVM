@@ -8,7 +8,7 @@
 import SwiftUI
 
 class AppCoordinator: AppCoordinatorProtocol {
-    @Published var path: NavigationPath = NavigationPath()
+    @Published var path: [Screen] = []
     @Published var sheet: Sheet?
     @Published var fullScreenCover: FullScreenCover?
     
@@ -32,11 +32,29 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func pop() {
-        path.removeLast()
+        if !path.isEmpty {
+            path.removeLast()
+        }
     }
-    
+
+    func popTo(_ screen: Screen) {
+        if !path.isEmpty {
+            if let index = path.firstIndex(where: { $0 == screen }) {
+                let pops = path.count - index - 1
+                if pops > 0 {
+                    for _ in 0..<pops {
+                        path.removeLast()
+                    }
+                }
+            }else{
+                push(screen)
+            }
+        }
+    }
     func popToRoot() {
-        path.removeLast(path.count)
+        if !path.isEmpty {
+            path.removeLast(path.count)
+        }
     }
     
     func dismissSheet() {
@@ -48,7 +66,7 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     // MARK: - Presentation Style Providers
-    @ViewBuilder
+//    @ViewBuilder
     func build(_ screen: Screen) -> some View {
         switch screen {
         case .Welcome, .SignUp, .SignIn, .Login:
@@ -60,7 +78,7 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
 
-    @ViewBuilder
+//    @ViewBuilder
     func build(_ sheet: Sheet) -> some View {
         switch sheet {
         case .detailTask(named: let task):
@@ -69,7 +87,7 @@ class AppCoordinator: AppCoordinatorProtocol {
         }
     }
     
-    @ViewBuilder
+//    @ViewBuilder
     func build(_ fullScreenCover: FullScreenCover) -> some View {
         switch fullScreenCover {
         case .addHabit(onSaveButtonTap: let onSaveButtonTap):

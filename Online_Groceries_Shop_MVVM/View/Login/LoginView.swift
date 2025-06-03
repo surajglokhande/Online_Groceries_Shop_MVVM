@@ -68,10 +68,10 @@ struct LoginView: View {
 //                    Divider().padding(.top, 5)
                      
                     RoundButton(title: "Continue with Email Sign In", icon: nil, bgColor: Color.init(hex: "5383EC"), titleColor: .white) {
-                        coordinator.build(.SignIn)
+                        coordinator.push(.SignIn)
                     }
                     RoundButton(title: "Continue with Email Sign Up", icon: nil, bgColor: Color.primaryApp, titleColor: .white) {
-                        coordinator.build(.SignUp)
+                        coordinator.push(.SignUp)
                     }
                 }
                 
@@ -84,7 +84,7 @@ struct LoginView: View {
                     Button {
                         alert.toggle()
                     } label: {
-                        RoundButton(title: "Continue with Google", icon: Image("google_logo"), bgColor: .init(hex: "db4437"), titleColor: .white, content:  {
+                        RoundButton(title: "Continue with Google", icon: Image("google_logo"), bgColor: .init(hex: "db4437"), titleColor: .white, tap:  {
                             //AnyView(_fromValue: EmptyView())
                         })
                         .disabled(true)
@@ -92,7 +92,7 @@ struct LoginView: View {
                     Button {
                         alert.toggle()
                     } label: {
-                        RoundButton(title: "Continue with Facebook", icon: Image("fb_logo"), bgColor: .init(hex: "4A66AC"), titleColor: .white, content:  {
+                        RoundButton(title: "Continue with Facebook", icon: Image("fb_logo"), bgColor: .init(hex: "4A66AC"), titleColor: .white, tap:  {
                             //AnyView(_fromValue: EmptyView())
                         })
                         .disabled(true)
@@ -119,9 +119,6 @@ struct LoginView: View {
         } message: {
             Text("This feature is not available yet.")
         }
-        .navigationBarHidden(true)
-        .navigationTitle("")
-        .navigationBarBackButtonHidden(true)
         .ignoresSafeArea()
     }
 }

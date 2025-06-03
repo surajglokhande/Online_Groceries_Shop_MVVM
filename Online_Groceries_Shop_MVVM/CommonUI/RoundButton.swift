@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct RoundButton<Content: View>: View {
+struct RoundButton/*<Content: View>*/: View {
     
     @State var title: String = ""
     @State var icon: Image? = nil
     @State var bgColor: Color = .white
     @State var titleColor: Color = .white
     
-    @ViewBuilder var content: () -> Content
+    //var content: () -> Content
     var tap: (()->())?
     
     var body: some View {
-        NavigationLink {
-            content()
+        Button {
+            tap?()
         } label: {
             HStack(spacing: 15) {
                 
@@ -47,11 +47,11 @@ struct RoundButton<Content: View>: View {
     }
 }
 
-#Preview {
-    RoundButton(title: "Click Me", bgColor: Color.primaryApp, titleColor: .white) {
-        Text("Button Clicked")
-    } tap: {
-        print("Button tapped")
-    }
-    .padding(20)
-}
+//#Preview {
+//    RoundButton(title: "Click Me", bgColor: Color.primaryApp, titleColor: .white) {
+//        Text("Button Clicked")
+//    } tap: {
+//        print("Button tapped")
+//    }
+//    .padding(20)
+//}

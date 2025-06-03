@@ -15,7 +15,10 @@ struct CoordinatorView: View {
         NavigationStack(path: $appCoordinator.path) {
             appCoordinator.build(.Welcome)
                 .navigationDestination(for: Screen.self) { screen in
+                    let _ = print(screen)
                     appCoordinator.build(screen)
+                        .navigationTitle("")
+                        
                 }
                 .sheet(item: $appCoordinator.sheet) { sheet in
                     appCoordinator.build(sheet)
@@ -23,7 +26,10 @@ struct CoordinatorView: View {
                 .fullScreenCover(item: $appCoordinator.fullScreenCover) { fullScreenCover in
                     appCoordinator.build(fullScreenCover)
                 }
+                .navigationTitle("")
+                
         }
+        .tint(.black)
     }
 }
 

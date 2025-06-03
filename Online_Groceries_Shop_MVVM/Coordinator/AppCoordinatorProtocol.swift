@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol AppCoordinatorProtocol: ObservableObject {
-    var path: NavigationPath { get set }
+    var path: [Screen] { get set }
     var sheet: Sheet? { get set }
     var fullScreenCover: FullScreenCover? { get set }
     

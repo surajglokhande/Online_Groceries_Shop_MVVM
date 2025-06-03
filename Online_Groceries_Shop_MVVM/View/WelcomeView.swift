@@ -32,30 +32,15 @@ struct WelcomeView: View {
                         .foregroundStyle(.white.opacity(0.7))
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 20)
-//                    NavigationLink {
-//                        coordinator.build(.SignUp)
-//                    } label: {
-//                        Text("Get Started")
-//                            .foregroundStyle(.white)
-//                            .font(.customFont(.semibold, size: 18))
-//                            .multilineTextAlignment(.center)
-//                    }
-//                    .frame(maxWidth: .infinity, minHeight: 60 ,maxHeight: 60)
-//                    .background(.green)
-//                    .cornerRadius(20)
                     RoundButton(title: "Get Started", bgColor: Color.primaryApp, titleColor: .white) {
-                        coordinator.build(.Login)
+                        coordinator.push(.Login)
                     }
                     Spacer()
                         .frame(height: 45)
                 }
                 
             }.padding(.horizontal ,20)
-            
         }
-        //        .navigationBarHidden(true)
-        //        .navigationTitle("")
-        //        .navigationBarBackButtonHidden(true)
     }
 }
 
